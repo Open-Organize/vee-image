@@ -13,7 +13,7 @@
   "keywords": [
     "vue",
     "image2d",
-    "image2d",
+    "image3d",
     "data",
     "visualization"
   ],
@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/Open-Organize/vee-image/issues"
   },
-  "homepage": "https://github.com/Open-Organize/vee-image#readme"
+  "homepage": "https://github.com/Open-Organize/vee-image#readme",
+  "dependencies": {
+    "image2d": "^1.8.0",
+    "image3d": "^2.0.8"
+  }
 }
