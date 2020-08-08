@@ -1,0 +1,26 @@
+{
+  "name": "vee-image",
+  "version": "1.0.1-dev",
+  "description": "为vue2+设计的绘图方法！",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Open-Organize/vee-image.git"
+  },
+  "keywords": [
+    "vue",
+    "image2d",
+    "image2d",
+    "data",
+    "visualization"
+  ],
+  "author": "Open-Organize",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Open-Organize/vee-image/issues"
+  },
+  "homepage": "https://github.com/Open-Organize/vee-image#readme"
+}
