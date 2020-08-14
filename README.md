@@ -24,6 +24,13 @@ npm start
 
 http://localhost:20000/index.html
 
+开发需知
+----------------------------
+
+本项目基于[image2D](https://github.com/yelloxing/image2D)实现，开发中你需要查阅[image2D接口文档](https://yelloxing.gitee.io/image2d/#/guide)，如果在使用过程中遇到任何问题请在[Issue](https://github.com/yelloxing/image2D/issues)中提问，包括新增接口等。
+
+任何一个新的组件的开发或旧组件的维护，除了在代码中添加良好的备注和[测试用例](https://github.com/Open-Organize/vee-image/tree/master/examples)中进行测试外，还应该同步[文档](https://github.com/Open-Organize/vee-image/tree/master/docs)到中。
+
 ## License
 
 [MIT](https://github.com/Open-Organize/vee-image/blob/master/LICENSE)
