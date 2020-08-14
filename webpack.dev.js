@@ -1,9 +1,14 @@
 const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
-    entry: ['./src/entry.js'],
+    entry: ['./examples/entry.js'],
     output: {
         path: __dirname,
-        filename: 'dist/main.js'
+        filename: './examples/dist/main.js'
+    },
+    resolve: {
+        alias: {
+            'vee-image': require('path').resolve('./packages/index.js')
+        }
     },
     module: {
         rules: [{
@@ -21,8 +26,8 @@ module.exports = {
             use: [{
                 loader: "url-loader",
                 options: {
-                    name: "dist/assets/[name].[ext]",
-                    context: "src/assets",
+                    name: "./examples/dist/assets/[name].[ext]",
+                    context: "./examples/assets",
                     limit: 5000
                 }
             }]

@@ -8,7 +8,21 @@
   <a href="https://github.com/Open-Organize/vee-image/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/vee-image.svg" alt="License"></a>
 </p>
 
-- 项目研发中，敬请期待！
+
+- 如何引入和使用，包括具体的组件等请查看[接口文档](http://yelloxing.gitee.io/vee-image/)
+
+如何启动测试用例？
+-----------------------------
+
+首先安装并启动用例项目:
+
+```bash
+npm start
+```
+
+然后在浏览器中打开下列地址：
+
+http://localhost:20000/index.html
 
 ## License
 

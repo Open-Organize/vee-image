@@ -2,9 +2,10 @@
   "name": "vee-image",
   "version": "1.0.1-dev",
   "description": "为vue2+设计的绘图方法！",
-  "main": "index.js",
+  "main": "./packages/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm install && npm run dev",
+    "dev": "node_modules/.bin/webpack-dev-server --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,23 @@
   "dependencies": {
     "image2d": "^1.8.1",
     "image3d": "^2.0.8"
+  },
+  "devDependencies": {
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "babel-loader": "^7.0.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^2.1.1",
+    "file-loader": "^4.0.0",
+    "url-loader": "^2.0.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.4.2",
+    "vue-loader": "^15.9.3",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   }
 }
