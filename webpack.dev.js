@@ -1,41 +1,7 @@
-const { VueLoaderPlugin } = require('vue-loader');
-module.exports = {
-    entry: ['./examples/entry.js'],
-    output: {
-        path: __dirname,
-        filename: './examples/dist/main.js'
-    },
-    resolve: {
-        alias: {
-            'vee-image': require('path').resolve('./packages/index.js')
-        }
-    },
-    module: {
-        rules: [{
-            test: /\.vue$/,
-            use: ['vue-loader']
-        }, {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: ['babel-loader']
-        }, {
-            test: /\.(css|scss)$/,
-            use: ['vue-style-loader', 'css-loader','sass-loader']
-        }, {
-            test: /\.(png|jpg|jpeg|gif|svg|woff)$/,
-            use: [{
-                loader: "url-loader",
-                options: {
-                    name: "./examples/dist/assets/[name].[ext]",
-                    context: "./examples/assets",
-                    limit: 5000
-                }
-            }]
-        }]
-    },
-    plugins: [
-        new VueLoaderPlugin()
-    ],
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
+
+module.exports = merge(common, {
     devServer: {
         contentBase: './',
         compress: true,
@@ -49,5 +15,6 @@ module.exports = {
             ignored: /node_modules/,
             aggregateTimeout: 300
         }
-    }
-};
+    },
+    mode: 'development'
+});
