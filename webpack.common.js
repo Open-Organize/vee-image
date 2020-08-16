@@ -1,7 +1,6 @@
 const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
   entry: {
-    examples: './examples/entry.js',
     docs: './docs/entry.js'
   },
   output: {

@@ -1,5 +1,3 @@
 <template>
-  <div>
-   文档页面
-  </div>
+  <router-view></router-view>
 </template>
