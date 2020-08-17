@@ -9,6 +9,12 @@
         >
           Smoothed Line Chart
         </li>
+        <li
+          @click="$router.push('/twoValueAxes')"
+          style="background-image:url('./assets/images/Line/two-value-axes.png')"
+        >
+          TwoValueAxes Line Chart
+        </li>
       </ul>
     </li>
     <li>
@@ -86,6 +92,7 @@ ul.view {
     }
     & > ul {
       & > li {
+        display: inline-block;
         padding-left: 10px;
         width: 250px;
         margin-bottom: 30px;
