@@ -37,6 +37,7 @@ export default {
           fillStyle: "pink",
           strokeStyle: "black",
         })
+        // 画出每个点
         for(let i =0;i<datalist.length;i++){
             painter.strokeCircle(100+i*100,550-datalist[i]/3,3);
         }
