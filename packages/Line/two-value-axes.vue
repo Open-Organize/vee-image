@@ -6,7 +6,7 @@
 
 <script>
 import $$ from "image2d";
-let layer;
+let layer,secpainter;
 export default {
   props: ["value"],
   methods: {
@@ -145,7 +145,6 @@ export default {
       layer.update();
     },
     secView(event) {
-      let secpainter = layer.painter("sec-view");
       secpainter.clearRect();
       let position = $$("canvas").position(event);
       let x = position.x;
@@ -177,6 +176,7 @@ export default {
       })
       .layer();
     this.viewshow();
+    secpainter = layer.painter("sec-view");
   },
 };
 </script>
