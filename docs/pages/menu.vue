@@ -15,6 +15,11 @@
         >
           TwoValueAxes Line Chart
         </li>
+        <li
+        @click="$router.push('/stepLine')"
+        style="background-image:url('./assets/images/Line/line-step.jpg')">
+          Step Line Chart
+        </li>
       </ul>
     </li>
     <li>
