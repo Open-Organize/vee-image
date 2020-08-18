@@ -13,6 +13,7 @@ let veePiePieDoughnut = { install: Vue => { Vue.component('veePiePieDoughnut', P
 let veeRadarRadar = { install: Vue => { Vue.component('veeRadarRadar', Radar_radar) } };
 let veeTreeTreeBasic = { install: Vue => { Vue.component('veeTreeTreeBasic', Tree_treeBasic) } };
 let veeLineTwoValueAxes = { install: Vue => { Vue.component('veeLineTwoValueAxes', Line_twoValueAxes) } };
+let veeLineStepLine = { install: Vue => { Vue.component('veeLineStepLine', Line_stepLine) } };
 
 export {
 
@@ -22,6 +23,7 @@ export {
     veePiePieDoughnut,
     veeRadarRadar,
     veeTreeTreeBasic,
-    veeLineTwoValueAxes
+    veeLineTwoValueAxes,
+    veeLineStepLine
 
 };
