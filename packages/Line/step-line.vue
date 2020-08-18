@@ -10,6 +10,7 @@ export default {
   props: ["value", "list"],
   methods: {
     paint() {
+      //创建画笔和设置画布大小
       let painter = $$("canvas")
         .attr({
           width: 800,
