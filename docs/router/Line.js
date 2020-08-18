@@ -1,6 +1,7 @@
 
 import lineSmooth from '../pages/Line/line-smooth.vue';
 import twoValueAxes from '../pages/Line/two-value-axes.vue';
+import stepLine from '../pages/Line/step-line.vue'
 export default [{
   path: '/lineSmooth',
   component: lineSmooth

@@ -5,6 +5,7 @@ import Pie_pieDoughnut from '../packages/pie/pie-doughnut.vue';
 import Radar_radar from '../packages/Radar/radar.vue';
 import Tree_treeBasic from '../packages/Tree/tree-basic.vue';
 import Line_twoValueAxes from '../packages/Line/two-value-axes.vue'
+import Line_stepLine from '../packages/Line/step-line.vue'
 
 let veeBarBarBackground = { install: Vue => { Vue.component('veeBarBarBackground', Bar_barBackground) } };
 let veeCandlestickCandlestickSimple = { install: Vue => { Vue.component('veeCandlestickCandlestickSimple', Candlestick_candlestickSimple) } };
