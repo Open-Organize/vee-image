@@ -145,6 +145,8 @@ export default {
       layer.update();
     },
     secView(event) {
+      //下面的代码可能是这个导致代码运行时越来越卡
+      // let secpainter = layer.painter("sec-view");
       secpainter.clearRect();
       let position = $$("canvas").position(event);
       let x = position.x;
@@ -155,14 +157,62 @@ export default {
           (position.y - 400) * (position.y - 400) <
         200 * 200
       ) {
-        secpainter
-          .config({
-            strokeStyle: "grey",
-          })
-          .beginPath()
-          .moveTo(400, 400)
-          .lineTo(position.x, position.y)
-          .stroke();
+        let r = Math.sqrt(
+          (position.x - 400) * (position.x - 400) +
+            (position.y - 400) * (position.y - 400)
+        );
+        let theta;
+        if(position.y>400 && position.x<400){
+          theta = Math.atan((position.y - 400) / (position.x - 400))+Math.PI;
+        }else if(position.y<400 && position.x<400){
+          theta = Math.atan((position.y - 400) / (position.x - 400))+Math.PI;
+        }
+        else if(position.y<400 && position.x>400){
+          theta = Math.atan((position.y - 400) / (position.x - 400))+Math.PI*2;
+        }
+        else{
+        theta = Math.atan((position.y - 400) / (position.x - 400));
+        }
+          secpainter
+            // 绘制悬浮直线和悬浮虚线圆
+            .config("strokeStyle", "gray")
+            .beginPath()
+            .config({
+              strokeStyle:"pink",
+              lineWidth:3,
+              lineDash:[]
+            })
+            .moveTo(400, 400)
+            .lineTo(400 + Math.cos(theta) * 200, 400 + Math.sin(theta) * 200)
+            .stroke()
+            .config({
+              lineDash: [5,5],
+              strokeStyle: "gray",
+            })
+            .strokeCircle(400, 400, r)
+            // 绘制水平刻度值
+            .config("fillStyle", "#000")
+            .fillRect(380 + r, 370, 40, 20)
+            .config("fillStyle", "#fff")
+            .fillText((r / 20).toFixed(3), 380 + r, 380)
+            //绘制角度刻度值
+            .config({
+              fillStyle:'#277eab3d'
+            })
+            .fillRect(400+Math.cos(theta)*200,400+Math.sin(theta)*200,60,30)
+            .config({
+              fillStyle:"white"
+            })
+            .fillText((theta/(Math.PI*2)*360).toFixed(3),400+Math.cos(theta)*200,398+Math.sin(theta)*200+20)
+            .config({
+              fillStyle:"#a427ab61"
+            })
+            .fillRect(x,y,100,30)
+            .config({
+              fillStyle:"green"
+            })
+            .fillText(`x:${x},y:${y.toFixed(0)}`,x+15,y+15)
+
       }
       layer.update();
     },
