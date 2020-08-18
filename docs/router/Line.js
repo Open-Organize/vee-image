@@ -7,4 +7,7 @@ export default [{
 },{
   path:'/twoValueAxes',
   component:twoValueAxes
+},{
+  path:'/stepLine',
+  component:stepLine
 }];
