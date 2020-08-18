@@ -1,12 +1,12 @@
 <template>
-  <div ref="mycanvas" class="canvas-view" :value="value" @mouseup="viewshow()">
+  <div ref="mycanvas" class="canvas-view" :value="value">
     <canvas @mousemove="secView"></canvas>
   </div>
 </template>
 
 <script>
 import $$ from "image2d";
-let layer,secpainter;
+let layer, secpainter;
 export default {
   props: ["value"],
   methods: {
@@ -130,8 +130,8 @@ export default {
         painter
           .beginPath()
           .config({
-            strokeStyle: "black",
-            lineWidth: 5,
+            strokeStyle: "#ba16d5",
+            lineWidth: 1,
           })
           .moveTo(heartlist[i - 1][0], heartlist[i - 1][1])
           .lineTo(heartlist[i][0], heartlist[i][1])
@@ -162,57 +162,83 @@ export default {
             (position.y - 400) * (position.y - 400)
         );
         let theta;
-        if(position.y>400 && position.x<400){
-          theta = Math.atan((position.y - 400) / (position.x - 400))+Math.PI;
-        }else if(position.y<400 && position.x<400){
-          theta = Math.atan((position.y - 400) / (position.x - 400))+Math.PI;
+        if (position.y > 400 && position.x < 400) {
+          theta = Math.atan((position.y - 400) / (position.x - 400)) + Math.PI;
+        } else if (position.y < 400 && position.x < 400) {
+          theta = Math.atan((position.y - 400) / (position.x - 400)) + Math.PI;
+        } else if (position.y < 400 && position.x > 400) {
+          theta =
+            Math.atan((position.y - 400) / (position.x - 400)) + Math.PI * 2;
+        } else {
+          theta = Math.atan((position.y - 400) / (position.x - 400));
         }
-        else if(position.y<400 && position.x>400){
-          theta = Math.atan((position.y - 400) / (position.x - 400))+Math.PI*2;
+        secpainter
+          // 绘制悬浮直线和悬浮虚线圆
+          .config("strokeStyle", "gray")
+          .beginPath()
+          .config({
+            strokeStyle: "pink",
+            lineWidth: 3,
+            lineDash: [],
+          })
+          .moveTo(400, 400)
+          .lineTo(400 + Math.cos(theta) * 200, 400 + Math.sin(theta) * 200)
+          .stroke()
+          .config({
+            lineDash: [5, 5],
+            strokeStyle: "gray",
+          })
+          .strokeCircle(400, 400, r)
+          // 绘制水平刻度值
+          .config("fillStyle", "#000")
+          .fillRect(380 + r, 370, 40, 20)
+          .config("fillStyle", "#fff")
+          .fillText((r / 20).toFixed(3), 380 + r, 380)
+          //绘制角度刻度值
+          .config({
+            fillStyle: "#277eab3d",
+          })
+          .fillRect(
+            400 + Math.cos(theta) * 200,
+            400 + Math.sin(theta) * 200,
+            60,
+            30
+          )
+          .config({
+            fillStyle: "white",
+          })
+          .fillText(
+            ((theta / (Math.PI * 2)) * 360).toFixed(3),
+            400 + Math.cos(theta) * 200,
+            398 + Math.sin(theta) * 200 + 20
+          )
+          .config({
+            fillStyle: "#a427ab61",
+          })
+          .fillRect(x, y, 100, 30)
+          .config({
+            fillStyle: "green",
+          })
+          .fillText(`x:${x},y:${y.toFixed(0)}`, x + 15, y + 15);
+        for (let i = 0; i < 101; i++) {
+          let theta1 = (i / 101) * 2 * Math.PI;
+          if (theta1 != theta) {
+          } else {
+            debugger;
+            let r1 = 100 * (1 + Math.sin((theta1 / Math.PI) * Math.PI));
+            secpainter
+              .config({
+                lineWidth: 1,
+                strokeStyle: "black",
+                lineDash: [],
+              })
+              .strokeCircle(
+                r1 * Math.cos(theta1) + 800 / 2,
+                r1 * Math.sin(theta1) + 800 / 2,
+                5
+              );
+          }
         }
-        else{
-        theta = Math.atan((position.y - 400) / (position.x - 400));
-        }
-          secpainter
-            // 绘制悬浮直线和悬浮虚线圆
-            .config("strokeStyle", "gray")
-            .beginPath()
-            .config({
-              strokeStyle:"pink",
-              lineWidth:3,
-              lineDash:[]
-            })
-            .moveTo(400, 400)
-            .lineTo(400 + Math.cos(theta) * 200, 400 + Math.sin(theta) * 200)
-            .stroke()
-            .config({
-              lineDash: [5,5],
-              strokeStyle: "gray",
-            })
-            .strokeCircle(400, 400, r)
-            // 绘制水平刻度值
-            .config("fillStyle", "#000")
-            .fillRect(380 + r, 370, 40, 20)
-            .config("fillStyle", "#fff")
-            .fillText((r / 20).toFixed(3), 380 + r, 380)
-            //绘制角度刻度值
-            .config({
-              fillStyle:'#277eab3d'
-            })
-            .fillRect(400+Math.cos(theta)*200,400+Math.sin(theta)*200,60,30)
-            .config({
-              fillStyle:"white"
-            })
-            .fillText((theta/(Math.PI*2)*360).toFixed(3),400+Math.cos(theta)*200,398+Math.sin(theta)*200+20)
-            .config({
-              fillStyle:"#a427ab61"
-            })
-            .fillRect(x,y,100,30)
-            .config({
-              fillStyle:"green"
-            })
-            .fillText(`x:${x},y:${y.toFixed(0)}`,x+15,y+15)
-
       }
       layer.update();
     },
