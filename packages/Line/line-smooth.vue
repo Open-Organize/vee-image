@@ -1,3 +1,3 @@
 <template>
-  <div>line-smooth</div>
+   <div>line-smooth</div>
 </template>

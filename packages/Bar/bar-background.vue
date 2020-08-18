@@ -1,3 +1,12 @@
 <template>
-  <div>bar-background</div>
+  <div>
+    <canvas></canvas>
+  </div>
 </template>
+
+<script>
+
+export default {
+  
+}
+</script>
