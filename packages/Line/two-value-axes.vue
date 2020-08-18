@@ -231,7 +231,7 @@ export default {
                 lineWidth: 1,
                 strokeStyle: "black",
                 lineDash: [],
-              })
+              }) 
               .strokeCircle(
                 r1 * Math.cos(theta1) + 800 / 2,
                 r1 * Math.sin(theta1) + 800 / 2,
