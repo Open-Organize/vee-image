@@ -151,7 +151,7 @@ export default {
       let position = $$("canvas").position(event);
       let x = position.x;
       let y = position.y;
-
+      //将点的坐标于坐标轴原点进行比较判断
       if (
         (position.x - 400) * (position.x - 400) +
           (position.y - 400) * (position.y - 400) <
@@ -162,6 +162,7 @@ export default {
             (position.y - 400) * (position.y - 400)
         );
         let theta;
+        //分情况进行判断
         if (position.y > 400 && position.x < 400) {
           theta = Math.atan((position.y - 400) / (position.x - 400)) + Math.PI;
         } else if (position.y < 400 && position.x < 400) {
@@ -207,6 +208,7 @@ export default {
           .config({
             fillStyle: "white",
           })
+          //角度显示
           .fillText(
             ((theta / (Math.PI * 2)) * 360).toFixed(3),
             400 + Math.cos(theta) * 200,
@@ -215,11 +217,13 @@ export default {
           .config({
             fillStyle: "#a427ab61",
           })
+          //鼠标下的框显示
           .fillRect(x, y, 100, 30)
           .config({
             fillStyle: "green",
           })
           .fillText(`x:${x.toFixed(0)},y:${y.toFixed(0)}`, x + 15, y + 15);
+          //将在线上的点放大
         for (let i = 0; i < 101; i++) {
           let theta1 = (i / 101) * 2 * Math.PI;
           if (Math.abs(theta1 - theta) < Math.PI / 100) {
