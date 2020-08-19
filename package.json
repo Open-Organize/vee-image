@@ -1,6 +1,6 @@
 {
   "name": "vee-image",
-  "version": "1.0.1-dev",
+  "version": "1.1.0",
   "description": "为vue2+设计的绘图组件库！",
   "main": "./packages/index.js",
   "scripts": {
