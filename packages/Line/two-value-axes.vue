@@ -219,19 +219,17 @@ export default {
           .config({
             fillStyle: "green",
           })
-          .fillText(`x:${x},y:${y.toFixed(0)}`, x + 15, y + 15);
+          .fillText(`x:${x.toFixed(0)},y:${y.toFixed(0)}`, x + 15, y + 15);
         for (let i = 0; i < 101; i++) {
           let theta1 = (i / 101) * 2 * Math.PI;
-          if (theta1 != theta) {
-          } else {
-            debugger;
+          if (Math.abs(theta1 - theta) < Math.PI / 100) {
             let r1 = 100 * (1 + Math.sin((theta1 / Math.PI) * Math.PI));
             secpainter
               .config({
                 lineWidth: 1,
                 strokeStyle: "black",
                 lineDash: [],
-              }) 
+              })
               .strokeCircle(
                 r1 * Math.cos(theta1) + 800 / 2,
                 r1 * Math.sin(theta1) + 800 / 2,
