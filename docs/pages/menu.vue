@@ -51,7 +51,7 @@
           @click="$router.push('/pieGauge')"
           style="background-image:url('./assets/images/Pie/pie-gauge.png')"
         >
-          Gauge Chart
+          Gauge Chart(一切以实物为准)
         </li>
       </ul>
     </li>
