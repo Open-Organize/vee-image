@@ -20,6 +20,11 @@
         style="background-image:url('./assets/images/Line/line-step.jpg')">
           Step Line Chart
         </li>
+        <li
+        @click="$router.push('/moneySchedule')"
+        style="background-image:url('./assets/images/Line/money-schedule.png')">
+          Money Schedule Chart
+        </li>
       </ul>
     </li>
     <li>
