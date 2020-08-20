@@ -16,8 +16,8 @@ export default {
       for (let i = 0; i < this.value.datalist.length; i++) {
         per.push(this.calcper(i));
       }
-     
-//画出雷达图的边框
+
+      //画出雷达图的边框
       for (let i = 5; i > 0; i--) {
         painter
           .beginPath()
@@ -47,7 +47,7 @@ export default {
           .beginPath()
           .config({
             lineWidth: 1,
-            strokeStyle:'#bbbbbb'
+            strokeStyle: "#bbbbbb",
           })
           .moveTo(500, 500)
           .lineTo(
@@ -56,6 +56,55 @@ export default {
           )
           .stroke();
       }
+      let list = [];
+      for (let a = 0; a < this.value.datalist.length; a++) {
+        list.push(this.calcper(a));
+      }
+      //将数据点画到雷达图的线上去
+      for (let i = 0; i < 6; i++) {
+        painter
+          .config({
+            lineWidth: 1,
+            strokeStyle: "red",
+          })
+          .strokeCircle(
+            500 + list[i] * Math.cos(((i * 60 + 30) / 180) * Math.PI) * 200,
+            500 + list[i] * Math.sin(((i * 60 + 30) / 180) * Math.PI) * 200,
+            2
+          );
+        if (i < 5) {
+          painter
+            .beginPath()
+            .moveTo(
+              500 + list[i] * Math.cos(((i * 60 + 30) / 180) * Math.PI) * 200,
+              500 + list[i] * Math.sin(((i * 60 + 30) / 180) * Math.PI) * 200
+            )
+            .lineTo(
+              500 +
+                list[i + 1] *
+                  Math.cos((((i + 1) * 60 + 30) / 180) * Math.PI) *
+                  200,
+              500 +
+                list[i + 1] *
+                  Math.sin((((i + 1) * 60 + 30) / 180) * Math.PI) *
+                  200
+            )
+            .stroke();
+        } else {
+          painter
+            .beginPath()
+            .moveTo(
+              500 + list[i] * Math.cos(((i * 60 + 30) / 180) * Math.PI) * 200,
+              500 + list[i] * Math.sin(((i * 60 + 30) / 180) * Math.PI) * 200
+            )
+            .lineTo(
+              500 + list[0] * Math.cos((30 / 180) * Math.PI) * 200,
+              500 + list[0] * Math.sin((30 / 180) * Math.PI) * 200
+            )
+            .stroke();
+        }
+      }
+
       layer.update();
       // debugger;
     },
