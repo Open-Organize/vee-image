@@ -123,7 +123,7 @@ export default {
              var oneVal = (maxValue-minValue)/totalYNomber;
                 
                 for(var i=0; i<=totalYNomber; i++){
-                    var markerVal =  parseInt(i*oneVal+minValue);;
+                    var markerVal =  parseInt(i*oneVal+minValue);
                     var xMarker = originX-10;
                     var yMarker = parseInt( originY-cHeight*(markerVal-minValue)/(maxValue-minValue) );
                     
@@ -228,11 +228,11 @@ export default {
       }
    },
     mounted: function() {
-    let size = 1000;
+    
     layer = $$("canvas")
       .attr({
-        width: size,
-        height: size
+        width: 2000,
+        height: 1000
       })
       .layer();
     this.doDraw();
