@@ -41,7 +41,7 @@ export default {
           (0.5 - rate) * Math.PI,
           2 * rate * Math.PI
         )
-        // 绘制波浪
+        // 绘制波浪（该死的贝塞尔曲线）
         // .bezierCurveTo(
         //   endPoint[0] +
         //     deep * (beginPoint[0] - endPoint[0]) +
