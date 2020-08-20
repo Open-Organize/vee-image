@@ -32,9 +32,9 @@
       <ul>
         <li
           @click="$router.push('/barBackground')"
-          style="background-image:url('./assets/images/Bar/bar-background.jpg')"
+          style="background-image:url('./assets/images/Candlestick/candlestick-simple.jpg')"
         >
-          Bar with Background
+         Candlestick
         </li>
       </ul>
     </li>
@@ -60,9 +60,9 @@
       <ul>
         <li
           @click="$router.push('/candlestickSimple')"
-          style="background-image:url('./assets/images/Candlestick/candlestick-simple.jpg')"
+          style="background-image:url('./assets/images/Bar/bar-background.jpg')"
         >
-          Basic Candlestick
+          Bar background
         </li>
       </ul>
     </li>
