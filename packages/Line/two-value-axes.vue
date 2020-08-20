@@ -167,7 +167,7 @@ export default {
           theta = Math.atan((position.y - 400) / (position.x - 400)) + Math.PI;
         } else if (position.y < 400 && position.x < 400) {
           theta = Math.atan((position.y - 400) / (position.x - 400)) + Math.PI;
-        } else if (position.y < 400 && position.x > 400) {
+        } else if (position.y <= 400 && position.x >= 400) {
           theta =
             Math.atan((position.y - 400) / (position.x - 400)) + Math.PI * 2;
         } else {
