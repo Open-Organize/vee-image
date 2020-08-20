@@ -42,16 +42,16 @@ export default {
           2 * rate * Math.PI
         )
         // 绘制波浪
-        .bezierCurveTo(
-          endPoint[0] +
-            deep * (beginPoint[0] - endPoint[0]) +
-            (beginPoint[0] - endPoint[0]) / 2,
-          endPoint[1] + 20,
-          endPoint[0] + deep * (beginPoint[0] - endPoint[0]),
-          endPoint[1] - 20,
-          endPoint[0],
-          endPoint[1]
-        )
+        // .bezierCurveTo(
+        //   endPoint[0] +
+        //     deep * (beginPoint[0] - endPoint[0]) +
+        //     (beginPoint[0] - endPoint[0]) / 2,
+        //   endPoint[1] + 20,
+        //   endPoint[0] + deep * (beginPoint[0] - endPoint[0]),
+        //   endPoint[1] - 20,
+        //   endPoint[0],
+        //   endPoint[1]
+        // )
         .fill();
     },
     //   绘制完整的两条波浪
