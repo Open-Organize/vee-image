@@ -6,7 +6,8 @@ import Radar_radar from '../packages/Radar/radar.vue';
 import Tree_treeBasic from '../packages/Tree/tree-basic.vue';
 import Line_twoValueAxes from '../packages/Line/two-value-axes.vue';
 import Line_stepLine from '../packages/Line/step-line.vue';
-import Line_moneySchedule from '../packages/Line/money-schedule.vue'
+import Line_moneySchedule from '../packages/Line/money-schedule.vue';
+import Pie_pieGauge from '../packages/Pie/pie-gauge.vue'
 
 let veeBarBarBackground = { install: Vue => { Vue.component('veeBarBarBackground', Bar_barBackground) } };
 let veeCandlestickCandlestickSimple = { install: Vue => { Vue.component('veeCandlestickCandlestickSimple', Candlestick_candlestickSimple) } };
@@ -17,6 +18,8 @@ let veeTreeTreeBasic = { install: Vue => { Vue.component('veeTreeTreeBasic', Tre
 let veeLineTwoValueAxes = { install: Vue => { Vue.component('veeLineTwoValueAxes', Line_twoValueAxes) } };
 let veeLineStepLine = { install: Vue => { Vue.component('veeLineStepLine', Line_stepLine) } };
 let veeLineMoneySchedule = { install: Vue => { Vue.component('veeLineMoneySchedule', Line_moneySchedule) } };
+let veePiePieGauge = { install: Vue => { Vue.component('veePiePieGauge', Pie_pieGauge) } };
+
 
 export {
 
@@ -28,6 +31,7 @@ export {
     veeTreeTreeBasic,
     veeLineTwoValueAxes,
     veeLineStepLine,
-    veeLineMoneySchedule
+    veeLineMoneySchedule,
+    veePiePieGauge
 
 };
