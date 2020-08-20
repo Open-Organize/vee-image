@@ -7,6 +7,8 @@ import '@yelloxing/normalize.css';
 // 引入路由
 import router from './router/index.js';
 
+import '../packages/index'
+
 new Vue({
   el: document.getElementById('root'),
   router,
