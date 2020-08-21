@@ -48,10 +48,17 @@
           Doughnut Chart
         </li>
         <li
+          @click="$router.push('/pieDoughnut1')"
+          style="background-image:url('./assets/images/Pie/pie-doughnut.jpg')"
+        >
+          Doughnut1 Chart(雏形)
+        </li>
+        <!-- 这里的url为什么不是../ -->
+        <li
           @click="$router.push('/pieGauge')"
           style="background-image:url('./assets/images/Pie/pie-gauge.png')"
         >
-          Gauge Chart
+          Gauge Chart(一切从0开始！)
         </li>
       </ul>
     </li>

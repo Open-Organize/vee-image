@@ -3,6 +3,7 @@ import Candlestick_candlestickSimple from '../packages/Candlestick/candlestick-s
 import Line_barBackground from '../packages/Line/line-smooth.vue';
 import Line_barIrregularty from '../packages/Line/line-irregularty.vue';
 import Pie_pieDoughnut from '../packages/pie/pie-doughnut.vue';
+import Pie_pieDoughnut1 from '../packages/pie/pie-doughnut1.vue';
 import Radar_radar from '../packages/Radar/radar.vue';
 import Tree_treeBasic from '../packages/Tree/tree-basic.vue';
 import Line_twoValueAxes from '../packages/Line/two-value-axes.vue';
@@ -15,6 +16,7 @@ let veeCandlestickCandlestickSimple = { install: Vue => { Vue.component('veeCand
 let veeLineBarIrregularty = {install:Vue =>{ Vue.component('veeLineBarIrregularty',Line_barIrregularty)}};
 let veeLineBarBackground = { install: Vue => { Vue.component('veeLineBarBackground', Line_barBackground) } };
 let veePiePieDoughnut = { install: Vue => { Vue.component('veePiePieDoughnut', Pie_pieDoughnut) } };
+let veePiePieDoughnut1 = { install: Vue => { Vue.component('veePiePieDoughnut1', Pie_pieDoughnut1) } };
 let veeRadarRadar = { install: Vue => { Vue.component('veeRadarRadar', Radar_radar) } };
 let veeTreeTreeBasic = { install: Vue => { Vue.component('veeTreeTreeBasic', Tree_treeBasic) } };
 let veeLineTwoValueAxes = { install: Vue => { Vue.component('veeLineTwoValueAxes', Line_twoValueAxes) } };
@@ -35,6 +37,7 @@ export {
     veeLineTwoValueAxes,
     veeLineStepLine,
     veeLineMoneySchedule,
-    veePiePieGauge
+    veePiePieGauge,
+    veePiePieDoughnut1
 
 };
