@@ -6,7 +6,9 @@
 
 <script>
 let layer, size;
+
 import $$ from "image2d";
+let colorArray = $$.getRandomColors(10000);
 export default {
   methods: {
     /**
@@ -77,9 +79,25 @@ export default {
       }
       deep *= 2;
       //画出内弧
-      this.drawWave(innerWave, rate, deep, help);
+      this.drawWave(
+        innerWave.config(
+          "fillStyle",
+          colorArray[(Math.random() * 10000).toFixed(0)]
+        ),
+        rate,
+        deep,
+        help
+      );
       //画出外弧
-      this.drawWave(outerWave, rate, deep, -help);
+      this.drawWave(
+        outerWave.config(
+          "fillStyle",
+          colorArray[(Math.random() * 10000).toFixed(0)]
+        ),
+        rate,
+        deep,
+        -help
+      );
       layer.update();
     },
     /**
@@ -92,11 +110,11 @@ export default {
      */
     renderWave(layer, rate, innerWave, outerWave) {
       $$.animation(
-         (deep)=> {
+        (deep) => {
           this.fullWave(layer, rate, deep, innerWave, outerWave);
         },
-        2000,
-         (deep) =>{
+        5000,
+        (deep) => {
           this.renderWave(layer, rate, innerWave, outerWave);
         }
       );
@@ -109,16 +127,17 @@ export default {
       //进度条
       let rate = 0.5;
       //获取图层与画笔
-      let painter = layer.painter("mainview");
+
       //准备好画动画的两个图层
-      let innerWave = layer.painter('innerWave');
-      innerWave.config({
-        fillStyle:'red'
-      })
-      let outerWave = layer.painter('outerWave');
-      outerWave.config({
-        fillStyle:'orange'
-      })
+      let innerWave = layer.painter("innerWave");
+      // innerWave.config({
+      //   fillStyle:'red'
+      // })
+      let outerWave = layer.painter("outerWave");
+      let painter = layer.painter("mainview");
+      // outerWave.config({
+      //   fillStyle:'orange'
+      // })
       painter
         .config({
           lineWidth: 3,
@@ -174,9 +193,21 @@ export default {
             );
           layer.update();
           // 初始化wave
-          this.fullWave(layer, rate * deep, deep, innerWave, outerWave);
+          this.fullWave(
+            layer,
+            rate * deep,
+            deep,
+            innerWave.config(
+              "fillStyle",
+              colorArray[(Math.random() * 10000).toFixed(0)]
+            ),
+            outerWave.config(
+              "fillStyle",
+              colorArray[(Math.random() * 10000).toFixed(0)]
+            )
+          );
         },
-        1500,
+        3000,
         (deep) => {
           //启动波浪动画
           this.renderWave(layer, rate, innerWave, outerWave);

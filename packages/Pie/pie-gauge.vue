@@ -23,7 +23,7 @@ export default {
       // 绘制指针的画笔
       let popainter = layer.painter("pointer");
       let preValue = 0;
-      let value = (Math.random() * 100).toFixed(2) - 0;
+      let value = (Math.random() * 100).toFixed(2) ;
       tepainter
         .clearRect()
         .config({
