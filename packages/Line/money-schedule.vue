@@ -6,8 +6,7 @@
 
 <script>
 import $$ from "image2d";
-let backpainter, wavepainter;
-
+let backpainter, owavepainter, iwavepainter;
 export default {
   methods: {
     //   绘制具体的一条波浪
@@ -42,20 +41,24 @@ export default {
           2 * rate * Math.PI
         )
         // 绘制波浪（该死的贝塞尔曲线）
-        // .bezierCurveTo(
-        //   endPoint[0] +
-        //     deep * (beginPoint[0] - endPoint[0]) +
-        //     (beginPoint[0] - endPoint[0]) / 2,
-        //   endPoint[1] + 20,
-        //   endPoint[0] + deep * (beginPoint[0] - endPoint[0]),
-        //   endPoint[1] - 20,
-        //   endPoint[0],
-        //   endPoint[1]
-        // )
+        .bezierCurveTo(
+          // rate > 0.5 ? 1 - rate : rate是用来控制波动大小的，为了好看，0-0.5和0.5-1取对称
+          endPoint[0] + (beginPoint[0] - endPoint[0]) * 0.5 * deep,
+          beginPoint[1] + 300 * deep * help * (rate > 0.5 ? 1 - rate : rate),
+          endPoint[0] + (beginPoint[0] - endPoint[0]) * 0.5 * (1 + deep),
+          beginPoint[1] -
+            300 * (1 - deep) * help * (rate > 0.5 ? 1 - rate : rate),
+
+          // 上面是第一和第二个看着点，最后这个是终点，加上画笔开始位置作为起点
+          beginPoint[0],
+          beginPoint[1]
+        )
         .fill();
     },
     //   绘制完整的两条波浪
-    fullWave(painter, rate, deep) {
+    fullWave(painter1, painter2, rate, deep) {
+      painter1.clearRect();
+      painter2.clearRect();
       var help = 1;
       if (deep > 0.5) {
         deep = deep - 0.5;
@@ -64,28 +67,27 @@ export default {
         deep = deep * 2;
       }
       //   绘制内弧
-      this.drawerWave(painter.config("fillStyle", "red"), rate, deep, help);
+      
+      this.drawerWave(painter1.config("fillStyle", "black"), rate, deep, help);
       //   绘制外弧
-      this.drawerWave(painter.config("fillStyle", "pink"), rate, deep, -help);
+      
+      // this.drawerWave(painter2.config("fillStyle", "pink"), rate, deep, -help);
     },
     // 启动动画
-    rendarWave(painter, rate, deep, layer, id) {
+    rendarWave(painter1, painter2, rate, layer) {
       $$.animation(
         (deep) => {
-          painter.clearRect();
-          this.fullWave(painter, rate, deep);
+          this.fullWave(painter1, painter2, rate, deep);
         },
         2000,
         () => {
-          
-          this.rendarWave(painter, rate, deep);
+          this.rendarWave(painter1, painter2, rate, layer);
         }
       );
     },
     viewshow() {
       // 进度条
-
-      let rate = 0.25;
+      let rate = 0.5;
       // 获取画布和画笔
       let size = 800;
       let help = -1;
@@ -96,7 +98,8 @@ export default {
         })
         .layer();
       let backpainter = layer.painter("back-view");
-      let wavepainter = layer.painter("wave-view");
+      let owavepainter = layer.painter("owave-view");
+      let iwavepainter = layer.painter("iwave-view");
       backpainter
         // 画三个外圆
         .config({
@@ -145,7 +148,6 @@ export default {
       $$.animation(
         (deep) => {
           // 根据进度rate更新弧度进度
-
           backpainter
             .config("fillStyle", "pink")
             .fillArc(
@@ -158,12 +160,12 @@ export default {
             );
           layer.update();
           // 初始化wave
-          this.fullWave(wavepainter, rate * deep, deep);
+          this.fullWave(owavepainter, iwavepainter, rate * deep, deep);
         },
         2000,
         (deep) => {
           // 启动
-          this.rendarWave(wavepainter, rate, deep);
+          this.rendarWave(owavepainter, iwavepainter, rate, layer);
         }
       );
     },
@@ -186,7 +188,8 @@ export default {
       })
       .layer();
 
-    let wavepainter = layer.painter("wave-view");
+    let owavepainter = layer.painter("owave-view");
+    let iwavepainter = layer.painter("iwave-view");
   },
 };
 </script>
