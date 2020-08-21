@@ -186,7 +186,7 @@ export default {
           .lineTo(400 + Math.cos(theta) * 200, 400 + Math.sin(theta) * 200)
           .stroke()
           .config({
-            lineDash: [5, 5],
+            lineDash: [10, 10],
             strokeStyle: "gray",
           })
           .strokeCircle(400, 400, r)
@@ -231,10 +231,16 @@ export default {
             secpainter
               .config({
                 lineWidth: 1,
-                strokeStyle: "black",
+                strokeStyle: "red",
+                fillStyle:"white",
                 lineDash: [],
               })
               .strokeCircle(
+                r1 * Math.cos(theta1) + 800 / 2,
+                r1 * Math.sin(theta1) + 800 / 2,
+                5
+              )
+              .fillCircle(
                 r1 * Math.cos(theta1) + 800 / 2,
                 r1 * Math.sin(theta1) + 800 / 2,
                 5
