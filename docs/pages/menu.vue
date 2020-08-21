@@ -47,6 +47,7 @@
         >
           Doughnut Chart
         </li>
+        <!-- 这里的url为什么不是../ -->
         <li
           @click="$router.push('/pieGauge')"
           style="background-image:url('./assets/images/Pie/pie-gauge.png')"
