@@ -1,18 +1,23 @@
 <template>
-  <div @mouseup="viewshow()">
+  <div>
     <canvas></canvas>
   </div>
 </template>
 
 <script>
+let layer, size;
 import $$ from "image2d";
-let backpainter, owavepainter, iwavepainter;
 export default {
   methods: {
-    //   绘制具体的一条波浪
-    drawerWave(painter, rate, deep, help) {
-      let size = 800;
-      // 半圆弧的起始点
+    /**
+     * drawWave()用来绘制一条具体的wave
+     * @param painter 传入的image2D的画笔
+     * @param rate 比率
+     * @param deep 动画进度
+     * @param help wave的类型取值为1或-1即上下波开始的区别
+     */
+    drawWave(painter, rate, deep, help) {
+      //半圆弧的起点
       let beginPoint = $$.rotate(
         size / 2,
         size / 2,
@@ -20,19 +25,19 @@ export default {
         size / 2 + 133,
         size / 2
       );
-      //   半圆弧的终点
+      //半圆弧的终点
       let endPoint = $$.rotate(
         size / 2,
         size / 2,
-        (0.5 + rate) * Math.PI,
+        (1.5 - rate) * Math.PI,
         size / 2 + 133,
         size / 2
       );
-      //   wave是由半圆弧和波浪组成
+      //wave由波浪和半圆弧组成
       painter
+        .beginPath()
         .moveTo(beginPoint[0], beginPoint[1])
-        //   绘制半圆弧
-
+        //绘制半圆弧
         .arc(
           size / 2,
           size / 2,
@@ -40,68 +45,81 @@ export default {
           (0.5 - rate) * Math.PI,
           2 * rate * Math.PI
         )
-        // 绘制波浪（该死的贝塞尔曲线）
+        //绘制波浪
         .bezierCurveTo(
-          // rate > 0.5 ? 1 - rate : rate是用来控制波动大小的，为了好看，0-0.5和0.5-1取对称
+          //下面为两个贝塞尔曲线的控制点
           endPoint[0] + (beginPoint[0] - endPoint[0]) * 0.5 * deep,
-          beginPoint[1] + 300 * deep * help * (rate > 0.5 ? 1 - rate : rate),
+          beginPoint[1] + 200 * deep * help * (rate > 0.5 ? 1 - rate : rate),
           endPoint[0] + (beginPoint[0] - endPoint[0]) * 0.5 * (1 + deep),
           beginPoint[1] -
-            300 * (1 - deep) * help * (rate > 0.5 ? 1 - rate : rate),
-
-          // 上面是第一和第二个看着点，最后这个是终点，加上画笔开始位置作为起点
+            200 * (1 - deep) * help * (rate > 0.5 ? 1 - rate : rate),
+          // 上面是第一和第二个控制点，最后这个是终点，加上画笔开始位置作为起点
           beginPoint[0],
           beginPoint[1]
         )
         .fill();
     },
-    //   绘制完整的两条波浪
-    fullWave(painter1, painter2, rate, deep) {
-      painter1.clearRect();
-      painter2.clearRect();
-      var help = 1;
+    /**
+     * 画出完整的波浪
+     * @param layer 传入的image2D的图层
+     * @param rate 比率
+     * @param deep 动画的进度
+     * @param innerWave 内Wave的节点
+     * @param outerWave 外Wave的节点
+     */
+    fullWave(layer, rate, deep, innerWave, outerWave) {
+      innerWave.clearRect();
+      outerWave.clearRect();
+      let help = 1;
       if (deep > 0.5) {
         deep = deep - 0.5;
         help = -1;
-      } else {
-        deep = deep * 2;
       }
-      //   绘制内弧
-      
-      this.drawerWave(painter1.config("fillStyle", "black"), rate, deep, help);
-      //   绘制外弧
-      
-      // this.drawerWave(painter2.config("fillStyle", "pink"), rate, deep, -help);
+      deep *= 2;
+      //画出内弧
+      this.drawWave(innerWave, rate, deep, help);
+      //画出外弧
+      this.drawWave(outerWave, rate, deep, -help);
+      layer.update();
     },
-    // 启动动画
-    rendarWave(painter1, painter2, rate, layer) {
+    /**
+     * 启动动画的函数
+     * @param layer 传入的image2D的图层
+     * @param rate 比率
+     * @param innerWave 内Wave的节点
+     * @param outerWave 外Wave的节点
+     * @param deep 动画进度
+     */
+    renderWave(layer, rate, innerWave, outerWave) {
       $$.animation(
-        (deep) => {
-          this.fullWave(painter1, painter2, rate, deep);
+         (deep)=> {
+          this.fullWave(layer, rate, deep, innerWave, outerWave);
         },
         2000,
-        () => {
-          this.rendarWave(painter1, painter2, rate, layer);
+         (deep) =>{
+          this.renderWave(layer, rate, innerWave, outerWave);
         }
       );
     },
-    viewshow() {
-      // 进度条
+    /**
+     * 显示函数
+     * 负责初始化画布
+     */
+    showView() {
+      //进度条
       let rate = 0.5;
-      // 获取画布和画笔
-      let size = 800;
-      let help = -1;
-      let layer = $$("canvas")
-        .attr({
-          width: size,
-          height: size,
-        })
-        .layer();
-      let backpainter = layer.painter("back-view");
-      let owavepainter = layer.painter("owave-view");
-      let iwavepainter = layer.painter("iwave-view");
-      backpainter
-        // 画三个外圆
+      //获取图层与画笔
+      let painter = layer.painter("mainview");
+      //准备好画动画的两个图层
+      let innerWave = layer.painter('innerWave');
+      innerWave.config({
+        fillStyle:'red'
+      })
+      let outerWave = layer.painter('outerWave');
+      outerWave.config({
+        fillStyle:'orange'
+      })
+      painter
         .config({
           lineWidth: 3,
           fillStyle: "#ff9800",
@@ -116,10 +134,7 @@ export default {
           lineWidth: 3,
           fillStyle: "#ff980021",
         })
-        .fillArc(size / 2, size / 2, size / 4, size / 3, 0, Math.PI * 2);
-
-      // 绘制三行文字
-      backpainter
+        .fillArc(size / 2, size / 2, size / 4, size / 3, 0, Math.PI * 2)
         .config({
           "font-size": 30,
           fillStyle: "gray",
@@ -143,12 +158,11 @@ export default {
           "arc-start-cap": "round",
           "arc-end-cap": "round",
         });
-
-      // 绘制进度条并启动该动画
+      //进度条动画
       $$.animation(
         (deep) => {
           // 根据进度rate更新弧度进度
-          backpainter
+          painter
             .config("fillStyle", "pink")
             .fillArc(
               size / 2,
@@ -160,36 +174,26 @@ export default {
             );
           layer.update();
           // 初始化wave
-          this.fullWave(owavepainter, iwavepainter, rate * deep, deep);
+          this.fullWave(layer, rate * deep, deep, innerWave, outerWave);
         },
-        2000,
+        1500,
         (deep) => {
-          // 启动
-          this.rendarWave(owavepainter, iwavepainter, rate, layer);
+          //启动波浪动画
+          this.renderWave(layer, rate, innerWave, outerWave);
         }
       );
     },
   },
-
-  // 实时监听视图的变化
-  watch: {
-    value: "viewshow",
-    immediate: true,
-  },
   //   初始化视图和画布
   mounted: function () {
-    let size = 800;
-    this.viewshow();
-
-    let layer = $$("canvas")
+    size = 800;
+    layer = $$("canvas")
       .attr({
         width: size,
         height: size,
       })
       .layer();
-
-    let owavepainter = layer.painter("owave-view");
-    let iwavepainter = layer.painter("iwave-view");
+    this.showView();
   },
 };
 </script>
