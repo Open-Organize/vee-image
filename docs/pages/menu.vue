@@ -51,7 +51,7 @@
           @click="$router.push('/pieDoughnut1')"
           style="background-image:url('./assets/images/Pie/pie-doughnut.jpg')"
         >
-          Doughnut1 Chart(雏形)
+          DJ Lights
         </li>
         <!-- 这里的url为什么不是../ -->
         <li

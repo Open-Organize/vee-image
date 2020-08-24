@@ -1,106 +1,61 @@
 <template>
   <div>
-    <canvas @mousemove="setView"></canvas>
+    <canvas></canvas>
   </div>
 </template>
 <script>
 import $$ from "image2d";
-let secpainter, layer;
+let layer;
 export default {
-  props: ["value"],
-  data() {
-    return {};
-  },
   methods: {
     doDraw() {
+      let size = 600;
       let painter = layer.painter("mycanvas");
+      let colorArray = $$.getRandomColors(1000);
+      // for (let i = 0; i < 20; i++) {
+      //   painter
+      //     .clearRect()
+      //     .config("fillStyle", colorArray[i])
+      //     .fillCircle(size / 4, size / 4, size / 4)
+      //     .fillCircle((size / 4) * 3, size / 4, size / 4)
+      //     .fillCircle(size / 4, (size / 4) * 3, size / 4)
+      //     .fillCircle((size / 4) * 3, (size / 4) * 3, size / 4);
+      //   layer.update();
+      // };
 
-      painter.config({
-        strokeStyle: "black",
-        fillStyle: "blue",
-        lineWidth: 2
-      });
-
-      let data = this.value;
-      let sum = 0;
-      for (let i = 0; i < data.length; i++) {
-        sum += data[i];
-      }
-
-      let start = 0;
-      for (let i = 0; i < data.length; i++) {
-        let svg = data[i] / sum;
-        
-        let deg = Math.PI * 2 * svg;
-
-        let theta=deg+start;
-
+      let i = 0;
+      setInterval(() => {
         painter
-        .fillArc(500, 500, 0, 300, start, deg)
-        //.strokeArc(500, 500, 0, 300, start, deg)
-        
-
-        painter.beginPath()
-        .moveTo(500,500)
-        .lineTo(500+300*Math.cos(theta),500+300*Math.sin(theta))
-        .stroke()
-
-        start += deg;
-      }
-
-      layer.update();
+          .clearRect()
+          .config("fillStyle", colorArray[i])
+          .fillCircle(size / 4, size / 4, size / 6)
+           .config("fillStyle", colorArray[i+50])
+          .fillCircle((size / 4) * 3, size / 4, size / 6)
+           .config("fillStyle", colorArray[i+100])
+          .fillCircle(size / 4, (size / 4) * 3, size / 6)
+           .config("fillStyle", colorArray[i+150])
+          .fillCircle((size / 4) * 3, (size / 4) * 3, size / 6);
+        layer.update();
+        i++;
+        if (i == 1000) i = 0;
+      }, 20);
     },
-    setView(event) {
-      secpainter.clearRect();
-      let position = $$("canvas").position(event);
-      let x=position.x;
-      let y= position.y;
-       if (
-        (position.x - 500) * (position.x - 500) +
-          (position.y - 500) * (position.y - 500) <
-        350 * 350
-      ) {
-         
-        
-      let data = this.value;
-      let sum = 0;
-      for (let i = 0; i < data.length; i++) {
-        sum += data[i];
-      }
-
-      let start = 0;
-      for (let i = 0; i < data.length; i++) {
-        let svg = data[i] / sum;
-        let deg = Math.PI * 2 * svg;
-        let theta=deg/2+start;
-        if(theta>start&&theta<deg){
-         secpainter.beginPath()
-        .moveTo(500,500)
-        .lineTo(500+350*Math.cos(theta),500+350*Math.sin(theta))
-        .stroke()
-        }
-        
-        start += deg;
-      }
-        
-        
-       
-      }
-
-      layer.update();
-    }
   },
-  mounted: function() {
-    let size = 1000;
+  mounted: function () {
+    let size = 600;
     layer = $$("canvas")
       .attr({
         width: size,
-        height: size
+        height: size,
       })
       .layer();
     this.doDraw();
-
-    secpainter = layer.painter("sec-view");
-  }
+  },
 };
 </script>
+<style>
+div {
+  text-align: center;
+  margin: 0 auto;
+}
+</style>
