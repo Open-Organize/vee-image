@@ -9,7 +9,8 @@ import Tree_treeBasic from '../packages/Tree/tree-basic.vue';
 import Line_twoValueAxes from '../packages/Line/two-value-axes.vue';
 import Line_stepLine from '../packages/Line/step-line.vue';
 import Line_moneySchedule from '../packages/Line/money-schedule.vue';
-import Pie_pieGauge from '../packages/Pie/pie-gauge.vue'
+import Pie_pieGauge from '../packages/Pie/pie-gauge.vue';
+import Pie_pieClock from '../packages/Pie/pie-clock.vue';
 
 let veeBarBarBackground = { install: Vue => { Vue.component('veeBarBarBackground', Bar_barBackground) } };
 let veeCandlestickCandlestickSimple = { install: Vue => { Vue.component('veeCandlestickCandlestickSimple', Candlestick_candlestickSimple) } };
@@ -23,6 +24,7 @@ let veeLineTwoValueAxes = { install: Vue => { Vue.component('veeLineTwoValueAxes
 let veeLineStepLine = { install: Vue => { Vue.component('veeLineStepLine', Line_stepLine) } };
 let veeLineMoneySchedule = { install: Vue => { Vue.component('veeLineMoneySchedule', Line_moneySchedule) } };
 let veePiePieGauge = { install: Vue => { Vue.component('veePiePieGauge', Pie_pieGauge) } };
+let veePiePieClock = { install: Vue => { Vue.component('veePiePieClock', Pie_pieClock) } };
 
 
 export {
@@ -38,6 +40,7 @@ export {
     veeLineStepLine,
     veeLineMoneySchedule,
     veePiePieGauge,
-    veePiePieDoughnut1
+    veePiePieDoughnut1,
+    veePiePieClock
 
 };

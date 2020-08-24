@@ -60,6 +60,12 @@
         >
           Gauge Chart(一切从0开始！)
         </li>
+        <li
+          @click="$router.push('/pieClock')"
+          style="background-image:url('./assets/images/Pie/pieClock.png')"
+        >
+          Clock Chart
+        </li>
       </ul>
     </li>
     <li>
