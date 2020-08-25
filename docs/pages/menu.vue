@@ -66,6 +66,12 @@
         >
           Clock Chart
         </li>
+        <li
+          @click="$router.push('/pieLove')"
+          style="background-image:url('./assets/images/Pie/pie-love.png')"
+        >
+          Love Chart
+        </li>
       </ul>
     </li>
     <li>

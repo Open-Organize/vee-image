@@ -1,5 +1,5 @@
 <template>
-  <div ref="clock">
+  <div>
     <h3>真不错</h3>
     <br />
     <br />
@@ -14,7 +14,7 @@ import $$ from "image2d";
 // 初始化图层和画布宽高以及随机色
 let layer;
 let width = 1000;
-let height = 100;
+let height = 1000;
 // 存随机色
 let colorArray = $$.getRandomColors(1000);
 // 用exec查找正则所匹配的时间数并存入数组

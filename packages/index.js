@@ -11,6 +11,7 @@ import Line_stepLine from '../packages/Line/step-line.vue';
 import Line_moneySchedule from '../packages/Line/money-schedule.vue';
 import Pie_pieGauge from '../packages/Pie/pie-gauge.vue';
 import Pie_pieClock from '../packages/Pie/pie-clock.vue';
+import Pie_pieLove from '../packages/Pie/pie-love.vue';
 
 let veeBarBarBackground = { install: Vue => { Vue.component('veeBarBarBackground', Bar_barBackground) } };
 let veeCandlestickCandlestickSimple = { install: Vue => { Vue.component('veeCandlestickCandlestickSimple', Candlestick_candlestickSimple) } };
@@ -25,6 +26,7 @@ let veeLineStepLine = { install: Vue => { Vue.component('veeLineStepLine', Line_
 let veeLineMoneySchedule = { install: Vue => { Vue.component('veeLineMoneySchedule', Line_moneySchedule) } };
 let veePiePieGauge = { install: Vue => { Vue.component('veePiePieGauge', Pie_pieGauge) } };
 let veePiePieClock = { install: Vue => { Vue.component('veePiePieClock', Pie_pieClock) } };
+let veePiePieLove = { install: Vue => { Vue.component('veePiePieLove', Pie_pieLove) } };
 
 
 export {
@@ -41,6 +43,7 @@ export {
     veeLineMoneySchedule,
     veePiePieGauge,
     veePiePieDoughnut1,
-    veePiePieClock
+    veePiePieClock,
+    veePiePieLove
 
 };
