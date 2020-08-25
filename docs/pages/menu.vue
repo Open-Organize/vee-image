@@ -95,6 +95,15 @@
         </li>
       </ul>
     </li>
+    <li>
+      <h2>时钟</h2>
+      <ul>
+        <li
+        @click="$router.push('/clock')"
+        style="background-image:url('./assets/images/Clock/clock.jpg')"
+        ></li>
+      </ul>
+    </li>
   </ul>
 </template>
 <style lang="scss" scoped>

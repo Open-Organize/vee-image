@@ -7,6 +7,7 @@
 <script>
 let layer;
 let size = 800;
+let oldValue=0;
 import $$ from "image2d";
 export default {
   methods: {
@@ -22,8 +23,10 @@ export default {
       let tepainter = layer.painter("text");
       // 绘制指针的画笔
       let popainter = layer.painter("pointer");
-      let preValue = 0;
+      let preValue = oldValue-0;
+      // debugger
       let value = (Math.random() * 100).toFixed(2) ;
+      oldValue = value-0;
       tepainter
         .clearRect()
         .config({
@@ -59,15 +62,19 @@ export default {
             .config("fillStyle", "white")
             .fillCircle(size / 2, size / 2, 5);
           // 这里必须要更新到画布，不然指针颜色和进度颜色会不同步
+          
           layer.update();
+          // debugger
         },
         1000,
         () => {
-          preValue = value;
+          
+          // preValue = value;
           this.drawpainter();
         }
       );
       layer.update();
+      
     },
     viewShow() {
       // 绘制背景的画笔
