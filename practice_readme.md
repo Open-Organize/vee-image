@@ -4,9 +4,9 @@
 
 > 以下都是在docs下
 
-2.到pages里使用组件，导入{组件名}from 'vee-image'，使用  Vue.use(组件名)
+2.接着在pages里新建显示页面
 
-3.接着在pages里新建显示页面
+3.到pages里使用组件，导入{组件名}from 'vee-image'，使用  Vue.use(组件名)
 
 4.在router里配置路由跳转路径并导入显示页面
 

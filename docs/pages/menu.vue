@@ -51,7 +51,7 @@
           @click="$router.push('/pieDoughnut1')"
           style="background-image:url('./assets/images/Pie/pie-doughnut.jpg')"
         >
-          Doughnut1 Chart(雏形)
+          DJ Lights
         </li>
         <!-- 这里的url为什么不是../ -->
         <li
@@ -59,6 +59,12 @@
           style="background-image:url('./assets/images/Pie/pie-gauge.png')"
         >
           Gauge Chart(一切从0开始！)
+        </li>
+        <li
+          @click="$router.push('/pieClock')"
+          style="background-image:url('./assets/images/Pie/pieClock.png')"
+        >
+          Clock Chart
         </li>
       </ul>
     </li>
