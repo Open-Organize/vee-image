@@ -144,6 +144,7 @@ export default {
                     .config("fillStyle","rgba(46,199,201,0.5)")
                     .fillCircle(oX,oY,10*ctr/numctr);
                     
+                     layer.update();
                    
                     
                     
@@ -154,12 +155,13 @@ export default {
                         painter.clearRect(0,0,1000,1000);
                         drawLineLabelMarkers();
                         drawChartAnimate();
+                         
                     }, speed*=1.08);
                 }
-
+              
             }
 
-          layer.update();
+          
        },
        setView(event){
           //layer.delete("mycanvas");
@@ -255,13 +257,15 @@ export default {
                         secpainter.clearRect(0,0,1000,1000);
                         //drawLineLabelMarkers();
                         drawChartAnimate();
+                         layer.update();
                     //}, speed*=1.08);
                 }
 
+             
             }
           
           
-         layer.update();
+         
           //layer.update("mycanvas")
        }
 
