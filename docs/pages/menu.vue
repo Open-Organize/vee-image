@@ -49,6 +49,12 @@
           Doughnut Chart
         </li>
        
+        <li
+          @click="$router.push('/pieDoughnut1')"
+          style="background-image:url('./assets/images/Pie/DJlights.png')"
+        >
+          DJ Lights
+        </li>
         <!-- 这里的url为什么不是../ -->
         <li
           @click="$router.push('/pieGauge')"
@@ -62,6 +68,17 @@
           style="background-image:url('./assets/images/Pie/pie-doughnut.jpg')"
         >
           Doughnut Chart
+        <li
+          @click="$router.push('/pieClock')"
+          style="background-image:url('./assets/images/Pie/pieClock.png')"
+        >
+          Clock Chart
+        </li>
+        <li
+          @click="$router.push('/pieLove')"
+          style="background-image:url('./assets/images/Pie/pie-love.png')"
+        >
+          Love Chart
         </li>
       </ul>
     </li>
@@ -97,6 +114,15 @@
         >
           From Left to Right Tree
         </li>
+      </ul>
+    </li>
+    <li>
+      <h2>时钟</h2>
+      <ul>
+        <li
+        @click="$router.push('/ledclock')"
+        style="background-image:url('./assets/images/Time/clock.jpg')"
+        ></li>
       </ul>
     </li>
   </ul>

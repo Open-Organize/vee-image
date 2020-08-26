@@ -12,7 +12,7 @@ import Line from './Line';
 import Pie from './Pie';
 import Radar from './Radar';
 import Tree from './Tree';
-
+import Time from './Time'
 export default new VueRouter({
   routes: [{
     path: '/menu',
@@ -25,6 +25,7 @@ export default new VueRouter({
   ...Pie,
   ...Radar,
   ...Tree,
+  ...Time,
   {
     path: '/*',
     redirect: '/menu'
