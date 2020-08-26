@@ -15,11 +15,14 @@ import $$ from "image2d";
 let layer;
 let width = 1000;
 let height = 1000;
+
 // 存随机色
 let colorArray = $$.getRandomColors(1000);
 // 用exec查找正则所匹配的时间数并存入数组
 let temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+// 存时间
 let data = [];
+// 存要动的小球
 let balls = [];
 // 注意这里的temp[0]存的是当前时间
 data.push(temp[1], temp[2], 10, temp[3], temp[4], 10, temp[5], temp[6]);
@@ -53,6 +56,7 @@ export default {
     updateDigitTime() {
       // 用exec查找正则所匹配的时间数并存入数组
       let temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+      // 存新的时间
       let newdata = [];
       let changeNumArray = [];
       // 注意这里的temp[0]存的是当前时间
@@ -70,14 +74,17 @@ export default {
         // 时间变化
         if (newdata[i] !== data[i]) {
           // 把变化的值和索引存在数组中
-          changeNumArray.push(i + "_" + ((Number(data[i]) + 1) % 10));
+          changeNumArray.push(i + "_" + data[i]);
         }
       }
       //增加小球
       for (let i = 0; i < changeNumArray.length; i++) {
-        this.addBalls.apply(this, changeNumArray[i].split("_"));
+        this.addBalls(
+          changeNumArray[i].split("_")[0],
+          changeNumArray[i].split("_")[1]
+        );
       }
-      // data = NewData;
+      data = [].concat(newdata);
     },
     // 更新小球状态
     updateBalls() {
@@ -86,7 +93,7 @@ export default {
         balls[i].stepY += balls[i].disY;
         balls[i].x += balls[i].stepX;
         balls[i].y += balls[i].stepY;
-        if (balls[i].x > width + R || balls[i].y > height + R) {
+        if (balls[i].x > width || balls[i].y > height) {
           balls.splice(i, 1);
           i--;
         }
@@ -100,11 +107,13 @@ export default {
         for (let j = 0; j < this.value[num][i].length; j++) {
           if (this.value[num][i][j] == 1) {
             let ball = {
-              x: 14 * (R + 2) * index + j * 2 * (R + 1) + (R + 1),
+              x: j * 2 * (R + 1) + (R + 1) + index * (width / 12.5),
               y: i * 2 * (R + 1) + (R + 1),
+              // xy轴的运动步长
               stepX: Math.floor(Math.random() * 4 - 2),
               stepY: -2 * numArray[Math.floor(Math.random() * numArray.length)],
               color: colorArray[(Math.random() * 1000).toFixed(0)],
+              // y轴的变化值
               disY: 1,
             };
             balls.push(ball);
@@ -112,31 +121,27 @@ export default {
         }
       }
     },
-    // 渲染
-    rendar() {
-      let painter = layer.painter("digit");
+    // 画小球
+    digitBall(i) {
       let rpainter = layer.painter("ball");
-      // layer.delete("ball");
       let R = width / 200 - 1;
-      // 渲染时钟
+      rpainter
+        .config("fillStyle", balls[i].color)
+        .fillCircle(balls[i].x, balls[i].y, R);
+    },
+    // 渲染时钟
+    rendarClock() {
+      layer.delete("digit");
       for (let i = 0; i < data.length; i++) {
         this.digitRender(i, data[i]);
       }
-      // 渲染小球
+    },
+    // 渲染小球
+    rendarBalls() {
+      layer.delete("ball");
       for (let i = 0; i < balls.length; i++) {
-        // layer.delete("ball")
-        rpainter
-          .config("fillStyle", balls[i].color)
-          .fillCircle(balls[i].x, balls[i].y, R);
+        this.digitBall(i);
       }
-
-      clearInterval(oTimer);
-      // 每隔1000毫秒调用一次绘制函数
-      let oTimer = setInterval(() => {
-        this.updateDigitTime();
-        this.updateBalls();
-        this.rendar();
-      }, 1000);
     },
   },
   mounted: function () {
@@ -146,7 +151,16 @@ export default {
         height: height,
       })
       .layer();
-    this.rendar();
+    // clearInterval(oTimer);
+    // 每隔1000毫秒调用一次绘制函数
+    setInterval(() => {
+      this.updateBalls();
+      this.rendarBalls();
+    }, 55);
+    setInterval(() => {
+      this.updateDigitTime();
+      this.rendarClock();
+    }, 1000);
   },
 };
 </script>
