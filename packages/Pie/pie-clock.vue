@@ -165,7 +165,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 div {
   margin-top: 250px;
   display: inline-block;
@@ -177,3 +177,4 @@ div > h3 {
   color: blueviolet;
 }
 </style>
+
