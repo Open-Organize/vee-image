@@ -101,7 +101,7 @@ export default {
     },
     // 增加要运动的小球
     addBalls(index, num) {
-      let numArray = [1, 2, 3];
+      let numArray = [1, 2, 3,4];
       let R = width / 200 - 1;
       for (let i = 0; i < this.value[num].length; i++) {
         for (let j = 0; j < this.value[num][i].length; j++) {
@@ -154,13 +154,16 @@ export default {
     // clearInterval(oTimer);
     // 每隔1000毫秒调用一次绘制函数
     setInterval(() => {
-      this.updateBalls();
-      this.rendarBalls();
-    }, 55);
-    setInterval(() => {
       this.updateDigitTime();
       this.rendarClock();
-    }, 1000);
+    }, 100);
+    setInterval(() => {
+      this.updateBalls();
+      this.rendarBalls();
+    }, 40);
+    
+    
+    
   },
 };
 </script>
@@ -178,3 +181,4 @@ div > h3 {
   text-align: center;
 }
 </style>
+

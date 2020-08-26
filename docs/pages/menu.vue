@@ -111,8 +111,8 @@
       <h2>时钟</h2>
       <ul>
         <li
-        @click="$router.push('/clock')"
-        style="background-image:url('./assets/images/Clock/clock.jpg')"
+        @click="$router.push('/ledclock')"
+        style="background-image:url('./assets/images/Time/clock.jpg')"
         ></li>
       </ul>
     </li>
