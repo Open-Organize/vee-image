@@ -49,7 +49,7 @@
         </li>
         <li
           @click="$router.push('/pieDoughnut1')"
-          style="background-image:url('./assets/images/Pie/pie-doughnut.jpg')"
+          style="background-image:url('./assets/images/Pie/DJlights.png')"
         >
           DJ Lights
         </li>
