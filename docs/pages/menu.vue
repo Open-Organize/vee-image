@@ -123,6 +123,12 @@
         @click="$router.push('/ledclock')"
         style="background-image:url('./assets/images/Time/clock.jpg')"
         ></li>
+        <li
+        @click="$router.push('/stupidClock')"
+        style="background-image:url('./assets/images/Time/clock.jpg')"
+        ></li>
+
+
       </ul>
     </li>
   </ul>
