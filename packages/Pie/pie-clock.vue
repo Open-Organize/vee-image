@@ -165,7 +165,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 div {
   margin-top: 250px;
   display: inline-block;
@@ -175,5 +175,6 @@ div > canvas {
 }
 div > h3 {
   color: blueviolet;
+  text-align: center;
 }
 </style>

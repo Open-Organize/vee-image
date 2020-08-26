@@ -61,13 +61,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 div {
   display: inline-block;
 }
 button {
-  margin-left: 365px;
-  height: 50px;
   color: green;
 }
 </style>
