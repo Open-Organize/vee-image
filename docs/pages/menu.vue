@@ -60,7 +60,7 @@
           @click="$router.push('/pieGauge')"
           style="background-image:url('./assets/images/Pie/pie-gauge.png')"
         >
-          Gauge Chart(一切从0开始！)
+          Gauge Chart
         </li>
 
          <li
@@ -113,6 +113,12 @@
           style="background-image:url('./assets/images/Tree/tree-basic.jpg')"
         >
           From Left to Right Tree
+        </li>
+        <li
+          @click="$router.push('/treeDj')"
+          style="background-image:url('./assets/images/Tree/tree-basic.jpg')"
+        >
+          Dj Tree
         </li>
       </ul>
     </li>

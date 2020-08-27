@@ -6,6 +6,7 @@ import Pie_pieDoughnut from '../packages/pie/pie-doughnut.vue';
 import Pie_pieDoughnut1 from '../packages/pie/pie-doughnut1.vue';
 import Radar_radar from '../packages/Radar/radar.vue';
 import Tree_treeBasic from '../packages/Tree/tree-basic.vue';
+import Tree_treeDj from '../packages/Tree/tree-dj.vue';
 import Line_twoValueAxes from '../packages/Line/two-value-axes.vue';
 import Line_stepLine from '../packages/Line/step-line.vue';
 import Line_moneySchedule from '../packages/Line/money-schedule.vue';
@@ -22,9 +23,9 @@ let veeLineBarIrregularty = { install: Vue => { Vue.component('veeLineBarIrregul
 let veeLineBarBackground = { install: Vue => { Vue.component('veeLineBarBackground', Line_barBackground) } };
 let veePiePieDoughnut = { install: Vue => { Vue.component('veePiePieDoughnut', Pie_pieDoughnut) } };
 let veePiePieDoughnut1 = { install: Vue => { Vue.component('veePiePieDoughnut1', Pie_pieDoughnut1) } };
-
 let veeRadarRadar = { install: Vue => { Vue.component('veeRadarRadar', Radar_radar) } };
 let veeTreeTreeBasic = { install: Vue => { Vue.component('veeTreeTreeBasic', Tree_treeBasic) } };
+let veeTreeTreeDj = { install: Vue => { Vue.component('veeTreeTreeDj', Tree_treeDj) } };
 let veeLineTwoValueAxes = { install: Vue => { Vue.component('veeLineTwoValueAxes', Line_twoValueAxes) } };
 let veeLineStepLine = { install: Vue => { Vue.component('veeLineStepLine', Line_stepLine) } };
 let veeLineMoneySchedule = { install: Vue => { Vue.component('veeLineMoneySchedule', Line_moneySchedule) } };
@@ -55,5 +56,5 @@ export {
     veePiePieLove,
     veeTimeClock,
     veeTimeStupidClock,
-
+    veeTreeTreeDj
 };

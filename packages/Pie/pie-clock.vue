@@ -40,7 +40,7 @@ export default {
             painter
               .config(
                 "fillStyle",
-                colorArray[(Math.random() * 1000).toFixed(0)]
+                "#ffc0cb82"
               )
               .fillCircle(
                 j * 2 * (R + 1) + (R + 1) + index * (width / 12.5),
