@@ -56,6 +56,7 @@ export default {
             lineWidth: 1,
             fillStyle: "pink",
             strokeStyle: "black",
+            textAlign: "center"
           })
           .fillText(i * 30, yyy[0], yyy[1])
           // 刻度
